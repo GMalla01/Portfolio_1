@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h1 style="text-align:center" > This is Gallery page  </h1>
+<div class="container mb-3 mt-3">
+<!-- Grid row -->
+<div class="row">
+
+    <!-- Grid column -->
+    <div class="col-md-12 d-flex justify-content-center mb-5">
+  
+      {% comment %} <button type="button" class="btn btn-outline-black waves-effect filter" data-rel="all">All</button> {% endcomment %}
+
+      {% comment %} <button type="button" class="btn btn-outline-black waves-effect filter" data-rel="1">Mountains</button> {% endcomment %}
+      
+      <button type="button" class="btn btn-outline-dark m-2"> <a href="{% url 'gallery' %}"> ALL </a></button>
+      {% for single_category in categories %}
+        <button type="button" class="btn btn-outline-dark m-2"><a href="{{single_category.get_url}}">{{single_category.category_name}} </a></button>
+      {% endfor %}
+  
+    </div>
+    <!-- Grid column -->
+  
+  </div>
+  <!-- Grid row -->
+  
+  <!-- Grid row -->
+  <div class="gallery" id="gallery">
+  
+    <!-- Grid column -->
+    <div class="row">
+      
+    {% for img in images %}
+    <div class="mb-3 pics animation all 2">
+      <img class="img-fluid" src="{{img.image.url}}" alt="Card image cap">
+    </div>
+    <!-- Grid column -->
+    {% endfor %}
+  </div>
+  
+    
+  
+  </div>
+  <!-- Grid row -->
+</div>
+{% endblock content %}

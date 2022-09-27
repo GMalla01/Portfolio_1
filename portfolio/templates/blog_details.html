@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container w-75 my-4" style="border:2px solid black">
+    <div class="card">
+        <img src="{{detail_post.image.url}}" class="card-top-img">
+        <div class="card-body">
+            <h1 class="card-title">{{detail_post.title}}</h1>
+            <p class="card-text"> <small class="text-muted"> By {{detail_post.author}} on {{detail_post.post_time}}</small></p>
+            <p class="card-text">{{detail_post.content}}</p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
