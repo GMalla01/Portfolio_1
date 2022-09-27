@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class = "container mt-5 mb-3" style="border:2px solid black">
+    {% if "search" in request.path %}
+    <h1 style="text-align:center"> Search result </h1>
+    <p class="text-center">{{blog_count}}</b> Blogs Found</p>
+    <div class ="row">
+        {% for post in blog %}
+        <div class = "col-lg-4 my-3 mx-0">
+            <div class ="card shadow">
+                <img src= "{{post.image.url}}" class ="card-img-top" alt = "...">
+                <div class= "card-body">
+                    <h5 class = "card-title"> {{post.title | truncatechars:10}}<br><small class="text-muted">BY {{post.author}} on {{post.post_time}}</small> </h5>
+                    <p class = "card-text"> {{post.content | truncatechars:100}} </p>
+                    <a href = "{% url 'blog_detail' post.slug %}" class = "btn btn-primary"> Read More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div> <h2> No results found</h2></div>
+    {% endif %}
+</div>
+
+
+{% endblock content %}

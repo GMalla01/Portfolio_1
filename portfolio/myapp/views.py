@@ -51,3 +51,18 @@ def blog_detail(request,slug):
 
     context={"detail_post": detail_post}
     return render(request,"blog_details.html", context)
+
+
+from django.db.models import Q
+def search(request):
+    if "keyword" in request.GET:
+        keyword = request.GET["keyword"]
+    if keyword:   #this is here toproceed further if anything inside keyword 
+        blog = blog_post.objects.order_by("-post_time").filter(Q(title__icontains=keyword)|Q(author__icontains=keyword))
+        blog_count=blog.count()
+    context ={
+        "blog":blog,
+        "blog_count":blog_count
+    }
+
+    return render(request,"search.html",context)

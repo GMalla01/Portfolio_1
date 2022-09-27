@@ -11,4 +11,5 @@ urlpatterns = [
    path("gallery/", views.gallery, name="gallery"),
    path("category/<str:category_slug>/", views.gallery, name="image_by_category"),
    path("contact/", views.contact, name="contact"),
+   path("search/", views.search, name="search"),
 ]
